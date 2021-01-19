@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+<h1>Title: {{ author.title }}</h1>
+{% block content %}
+  <p><strong>Nome:</strong> <a href="">{{ author.first_name }}</a></p> <!-- author detail link not yet defined -->
+  <p><strong>Sobrenome:</strong> {{ author.last_name }}</p>
+  <p><strong>Nascido em :</strong> {{ author.date_of_birth }}</p>
+  <p><strong>Morreu em :</strong> {{ author.date_of_death }}</p>
+{% endblock %}
+

@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from catalog.models import Book, Author, BookInstance, Genre
 from django.views import generic
+from django.shortcuts import get_object_or_404
 
 # Create your views here.
 
@@ -49,6 +50,7 @@ def listar_livros(request):
 
 class BookListView(generic.ListView):
     model = Book
+    paginate_by = 2
 
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get the context
@@ -58,5 +60,35 @@ class BookListView(generic.ListView):
         return context
 
 
-class BookDetailView(generic.DetailView):
-    model = Book
+# class BookDetailView(generic.DetailView):
+#     model = Book
+
+
+# def book_detail_view(request, pk):
+#     try:
+#         book = Book.objects.get(pk=pk)
+    
+#     except book.DoesNotExist:
+#         raise Http404('Livro nao existe')
+
+#     return render(request, 'catalog/book_detail.html', context={'book': book})
+
+
+def book_detail_view(request, pk):
+    book = get_object_or_404(Book, pk=pk)
+    return render(request, 'catalog/book_detail.html', context={'book': book})
+    
+
+class AuthorListView(generic.ListView):
+    model = Author
+    def get_contex_data(self, **kwargs):
+        context = super(AuthorListView, self).get_context_data(**kwargs)
+        context['some_data'] = 'This is just some data'
+        return context
+
+
+
+
+def author_detail_view(request, pk):
+    author = get_object_or_404(Author, pk=pk)
+    return render(request, 'catalog/author_detail.html', context={'author': author})
