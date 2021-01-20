@@ -16,23 +16,24 @@ class AuthorAdmin(admin.ModelAdmin):
 class GenreAdmin(admin.ModelAdmin):
     pass
 
+@admin.register(BookInstance)
 class BookInstanceAdmin(admin.ModelAdmin):
+    list_display = ('book', 'status', 'borrower', 'due_back', 'id')
     list_filter = ('status', 'due_back')
 
     fieldsets = (
         (None, {
-            'fields': ('book', 'imprint', 'id')
+            'fields': ('book','imprint', 'id')
         }),
         ('Availability', {
-            'fields': ('status', 'due_back')
+            'fields': ('status', 'due_back','borrower')
         }),
-    ) 
-
-class LanguageAdmin(admin.ModelAdmin):
+    )
+class LanguageAdmin(admin.ModelAdmin):  
     pass
 
 admin.site.register(Book, BookAdmin)
 admin.site.register(Author, AuthorAdmin)
 admin.site.register(Genre, GenreAdmin)
-admin.site.register(BookInstance, BookInstanceAdmin)
+#admin.site.register(BookInstance, BookInstanceAdmin)
 admin.site.register(Language, LanguageAdmin)

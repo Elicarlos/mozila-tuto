@@ -14,5 +14,7 @@
     <li><strong>Casmurro:</strong> {{ casmurro }}</li>
   </ul>
 
+  <p>You have visited this page {{ num_visits }} time{% if num_visits > 1 %}s{% endif %}.</p>
+
   <button><a href="https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Generic_views">Continua aqui</a></button>
 {% endblock %}

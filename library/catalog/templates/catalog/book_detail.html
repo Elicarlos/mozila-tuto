@@ -1,18 +1,9 @@
-<<<<<<< HEAD
-{% extends "base.html" %}
-=======
-{% extends "base_generic.html" %}
->>>>>>> 851f360360b4640b8e6f95d8c5d6dd277c8741d3
 
+{% extends "base.html" %}
 {% block content %}
   <h1>Title: {{ book.title }}</h1>
-
-<<<<<<< HEAD
-  <p><strong>Author:</strong> <a href="{{book.author.get_absolute_url}}">{{ book.author }}</a></p> <!-- author detail link not yet defined -->
-=======
-  <p><strong>Author:</strong> <a href="">{{ book.author }}</a></p> <!-- author detail link not yet defined -->
->>>>>>> 851f360360b4640b8e6f95d8c5d6dd277c8741d3
-  <p><strong>Summary:</strong> {{ book.summary }}</p>
+  <p><strong>Author:</strong> <a href="{% url 'author-detail' book.author.pk %}">{{ book.author }}</a></p> <!-- author detail link not yet defined -->
+  <p><strong>Summary:</strong> {{ book.sumary}}</p>
   <p><strong>ISBN:</strong> {{ book.isbn }}</p>
   <p><strong>Language:</strong> {{ book.language }}</p>
   <p><strong>Genre:</strong> {{ book.genre.all|join:", " }}</p>
